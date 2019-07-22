@@ -18,16 +18,11 @@ class CustomAppBar extends StatelessWidget {
           Icon(FontAwesomeIcons.bars),
           RichText(
             text: TextSpan(
-              style: const TextStyle(
-                color: Colors.black87,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w600,
-                fontSize: 36.0,
-              ),
+              style: Theme.of(context).textTheme.title,
               children: <TextSpan>[
                 TextSpan(
                   text: "t",
-                  style: TextStyle(color: Colors.blueAccent),
+                  style: TextStyle(color: Theme.of(context).accentColor),
                 ),
                 TextSpan(
                   text: "ravelingg",
