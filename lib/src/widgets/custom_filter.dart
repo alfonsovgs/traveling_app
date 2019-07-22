@@ -18,11 +18,7 @@ class CustomFilter extends StatelessWidget {
         child: Center(
           child: Text(
             "Amsterdam",
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w600,
-            ),
+            style: Theme.of(context).textTheme.title.copyWith(fontSize: 14, color: Colors.white),
           ),
         ),
       ),
