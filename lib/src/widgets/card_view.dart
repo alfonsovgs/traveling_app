@@ -25,13 +25,78 @@ class CardView extends StatelessWidget {
 }
 
 class _ContentCard extends StatelessWidget {
-  Widget _buildAvatarInfo() {
+  Widget _buildAvatarInfo(BuildContext context) {
+    var style = Theme.of(context).textTheme.title.copyWith(fontSize: 14.0, color: Colors.white);
+    var styleButtom = Theme.of(context).textTheme.display1.copyWith(color: Colors.white);
+
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          CircleAvatar(),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              CircleAvatar(),
+              SizedBox(width: 5),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text("Richard H. More", style: style),
+                  Text("2 WEEk AGO", style: styleButtom),
+                ],
+              ),
+            ],
+          ),
+          Column(
+            children: <Widget>[
+              Icon(
+                Icons.favorite,
+                color: Theme.of(context).accentColor,
+              ),
+              SizedBox(height: 5),
+              Icon(
+                Icons.bookmark,
+                color: Colors.white,
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContentInfo(BuildContext context) {
+    var style = Theme.of(context).textTheme.title.copyWith(fontSize: 18.0, color: Colors.white);
+    var styleCountry = Theme.of(context).textTheme.display1.copyWith(color: Colors.white);
+    double c_width = MediaQuery.of(context).size.width * 0.6;
+
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          CircleAvatar(
+            backgroundColor: Colors.white,
+            radius: 25,
+            child: Icon(
+              Icons.play_arrow,
+              size: 30,
+              color: Theme.of(context).accentColor,
+            ),
+          ),
+          SizedBox(width: 5),
+          Container(
+            width: c_width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text("Discover the Amsterdam's hidden gems.", style: style),
+                Text("AMSTERDAM HOLLAND", style: styleCountry),
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -53,14 +118,22 @@ class _ContentCard extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: _buildAvatarInfo(),
+      child: Stack(
+        children: <Widget>[
+          _buildAvatarInfo(context),
+          Align(
+            alignment: Alignment.center,
+            child: _buildContentInfo(context),
+          )
+        ],
+      ),
     );
   }
 }
 
 class _ToolWidget extends StatelessWidget {
-  Widget _buildCustomOption(IconData icon, String msg, {bool optDefault = false}) {
-    var color = optDefault ? Colors.blueAccent : Colors.black87;
+  Widget _buildCustomOption(BuildContext context, IconData icon, String msg, {bool optDefault = false}) {
+    var color = optDefault ? Theme.of(context).accentColor : Colors.black87;
 
     return Row(
       children: <Widget>[
@@ -89,9 +162,9 @@ class _ToolWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              _buildCustomOption(FontAwesomeIcons.heart, "50.2k", optDefault: true),
-              _buildCustomOption(FontAwesomeIcons.commentAlt, "490"),
-              _buildCustomOption(Icons.share, "12"),
+              _buildCustomOption(context, FontAwesomeIcons.heart, "50.2k", optDefault: true),
+              _buildCustomOption(context, FontAwesomeIcons.commentAlt, "490"),
+              _buildCustomOption(context, Icons.share, "12"),
             ],
           ),
         ),
