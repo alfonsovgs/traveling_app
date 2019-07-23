@@ -68,9 +68,9 @@ class _ContentCard extends StatelessWidget {
   }
 
   Widget _buildContentInfo(BuildContext context) {
-    var style = Theme.of(context).textTheme.title.copyWith(fontSize: 18.0, color: Colors.white);
+    var style = Theme.of(context).textTheme.title.copyWith(fontSize: 22.0, color: Colors.white);
     var styleCountry = Theme.of(context).textTheme.display1.copyWith(color: Colors.white);
-    double c_width = MediaQuery.of(context).size.width * 0.6;
+    double cWidth = MediaQuery.of(context).size.width * 0.6;
 
     return Container(
       child: Row(
@@ -87,13 +87,24 @@ class _ContentCard extends StatelessWidget {
           ),
           SizedBox(width: 5),
           Container(
-            width: c_width,
+            width: cWidth,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text("Discover the Amsterdam's hidden gems.", style: style),
                 Text("AMSTERDAM HOLLAND", style: styleCountry),
+                Row(
+                  children: <Widget>[
+                    Icon(Icons.star, color: Colors.yellowAccent, size: 15),
+                    Icon(Icons.star, color: Colors.yellowAccent, size: 15),
+                    Icon(Icons.star, color: Colors.yellowAccent, size: 15),
+                    Icon(Icons.star, color: Colors.yellowAccent, size: 15),
+                    Icon(Icons.star, color: Colors.yellowAccent, size: 15),
+                    SizedBox(width: 5),
+                    Text("540 km", style: TextStyle(color: Colors.white)),
+                  ],
+                )
               ],
             ),
           )
